@@ -15,6 +15,7 @@ if (toggle && mobileNav && backdrop) {
     toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
     mobileNav.setAttribute('aria-hidden', String(!open));
+    mobileNav.inert = !open;
     document.body.classList.toggle('menu-open', open);
 
     if (open) {
