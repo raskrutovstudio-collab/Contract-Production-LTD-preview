@@ -31,7 +31,7 @@
         <div class="header-actions">
           <a class="header-mail" href="mailto:info@res.com.kz">info@res.com.kz</a>
           <a class="btn btn-primary" href="/kontakty/">Обсудить проект</a>
-          <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false">
+          <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-navigation">
             <span></span>
           </button>
         </div>
@@ -39,7 +39,8 @@
     </div>
   </header>
 
-  <nav class="mobile-nav" aria-label="Мобильная навигация">
+  <div class="menu-backdrop" hidden></div>
+  <nav class="mobile-nav" id="mobile-navigation" aria-label="Мобильная навигация" aria-hidden="true">
     <a href="#products">Ветроэлектростанции</a>
     <a href="#technology">Технология</a>
     <a href="#solutions">Решения</a>
