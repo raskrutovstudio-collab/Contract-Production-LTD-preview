@@ -380,3 +380,149 @@ body.menu-open{overflow:hidden}
   }
   .case{min-height:230px}
 }
+
+
+/* Turbine visual aligned with the client's vertical VES materials */
+.energy-card{
+  background:
+    radial-gradient(circle at 28% 18%,rgba(255,255,255,.82),transparent 28%),
+    linear-gradient(155deg,#e9f5ff 0%,#a9d6ff 42%,#5b9be5 100%);
+}
+.energy-card:after{
+  content:"";
+  position:absolute;
+  inset:auto -12% -24% 32%;
+  height:58%;
+  background:
+    linear-gradient(155deg,rgba(255,255,255,.72),rgba(255,255,255,.08)),
+    linear-gradient(90deg,transparent 0 10%,rgba(17,65,111,.1) 10% 11%,transparent 11% 20%);
+  clip-path:polygon(0 66%,10% 54%,20% 61%,33% 40%,43% 49%,54% 31%,64% 48%,74% 28%,83% 43%,100% 21%,100% 100%,0 100%);
+  opacity:.86;
+}
+.turbine{
+  width:390px;
+  height:500px;
+}
+.turbine .mast{
+  width:18px;
+  height:292px;
+  background:linear-gradient(90deg,#96adc2 0%,#f7fbff 36%,#d7e3ed 62%,#829bb4 100%);
+  box-shadow:0 0 0 1px rgba(42,76,110,.09);
+}
+.mast-brace{
+  position:absolute;
+  left:50%;
+  bottom:16px;
+  width:5px;
+  height:276px;
+  border-radius:999px;
+  background:linear-gradient(#eaf3fb,#9db3c6);
+  transform-origin:bottom center;
+  opacity:.9;
+}
+.brace-left{transform:translateX(-50%) rotate(13deg)}
+.brace-right{transform:translateX(-50%) rotate(-13deg)}
+.rotor-frame{
+  position:absolute;
+  left:50%;
+  top:112px;
+  width:286px;
+  height:178px;
+  transform:translate(-50%,-50%);
+  border:5px solid rgba(236,246,253,.9);
+  border-radius:50%;
+  box-shadow:
+    inset 0 0 0 8px rgba(40,91,137,.08),
+    0 14px 32px rgba(18,53,89,.14);
+}
+.sail{
+  position:absolute;
+  left:50%;
+  top:112px;
+  width:74px;
+  height:146px;
+  transform-origin:0 50%;
+  border-radius:68% 18% 68% 18%;
+  background:
+    linear-gradient(110deg,rgba(255,255,255,.98) 0%,rgba(221,234,244,.92) 38%,rgba(125,155,181,.92) 100%);
+  box-shadow:
+    inset -10px -8px 18px rgba(54,85,110,.12),
+    0 10px 20px rgba(19,54,91,.11);
+  border:1px solid rgba(255,255,255,.72);
+}
+.s1{transform:translate(0,-50%) rotate(0deg)}
+.s2{transform:translate(0,-50%) rotate(60deg)}
+.s3{transform:translate(0,-50%) rotate(120deg)}
+.s4{transform:translate(0,-50%) rotate(180deg)}
+.s5{transform:translate(0,-50%) rotate(240deg)}
+.s6{transform:translate(0,-50%) rotate(300deg)}
+.turbine .hub{
+  top:112px;
+  width:42px;
+  height:42px;
+  background:radial-gradient(circle at 35% 30%,#fff 0 20%,#c7d8e6 58%,#7b96ac 100%);
+  box-shadow:0 0 0 8px rgba(255,255,255,.18),0 12px 26px rgba(10,41,78,.18);
+}
+.product-art{
+  right:-8px;
+  bottom:-34px;
+  width:315px;
+  height:250px;
+}
+.product-art .mini-mast{
+  width:10px;
+  height:142px;
+  background:linear-gradient(90deg,#9eb7cc,#f7fbff,#8ea8bf);
+}
+.mini-rotor{
+  position:absolute;
+  left:50%;
+  top:24px;
+  width:144px;
+  height:105px;
+  transform:translateX(-50%);
+  border:4px solid rgba(157,190,219,.68);
+  border-radius:50%;
+}
+.mini-rotor span{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:44px;
+  height:84px;
+  transform-origin:0 50%;
+  border-radius:70% 18% 70% 18%;
+  background:linear-gradient(120deg,#f7fbff,#b6ccdf);
+  border:1px solid rgba(255,255,255,.64);
+}
+.mini-rotor span:nth-child(1){transform:translate(0,-50%) rotate(0deg)}
+.mini-rotor span:nth-child(2){transform:translate(0,-50%) rotate(90deg)}
+.mini-rotor span:nth-child(3){transform:translate(0,-50%) rotate(180deg)}
+.mini-rotor span:nth-child(4){transform:translate(0,-50%) rotate(270deg)}
+.dark .mini-rotor{
+  border-color:rgba(137,190,241,.58);
+}
+.dark .mini-rotor span{
+  background:linear-gradient(120deg,#eaf5ff,#7aaee2);
+  border-color:rgba(255,255,255,.22);
+}
+@media(max-width:700px){
+  .turbine{
+    width:340px;
+    height:430px;
+  }
+  .rotor-frame{
+    width:250px;
+    height:158px;
+  }
+  .sail{
+    width:66px;
+    height:130px;
+  }
+  .turbine .mast{
+    height:255px;
+  }
+  .mast-brace{
+    height:242px;
+  }
+}
