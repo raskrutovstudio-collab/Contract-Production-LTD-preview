@@ -526,3 +526,148 @@ body.menu-open{overflow:hidden}
     height:242px;
   }
 }
+
+
+/* Desktop 1440 composition pass */
+@media(min-width:1101px){
+  :root{--container:min(1320px,calc(100% - 80px))}
+  .site-header{padding:18px 0}
+  .header-row{
+    min-height:76px;
+    padding:10px 14px 10px 20px;
+    border-radius:22px;
+  }
+  .main-nav{gap:32px}
+  .hero{
+    min-height:760px;
+    padding:136px 0 52px;
+  }
+  .hero-grid{
+    grid-template-columns:minmax(0,.88fr) minmax(560px,1.12fr);
+    gap:58px;
+    align-items:center;
+  }
+  .hero-content{padding-top:18px}
+  .hero h1{
+    max-width:650px;
+    margin:20px 0 18px;
+    font-size:72px;
+    line-height:.96;
+  }
+  .hero-copy{
+    max-width:570px;
+    margin-bottom:26px;
+    font-size:17px;
+    line-height:1.56;
+  }
+  .hero-meta{
+    max-width:575px;
+    margin-top:34px;
+    padding-top:20px;
+    gap:28px;
+  }
+  .hero-visual{
+    min-height:510px;
+    margin-right:12px;
+  }
+  .visual-orbit{
+    inset:20px 10px 10px 40px;
+  }
+  .energy-card{
+    top:0;
+    width:590px;
+    height:488px;
+    border-radius:36px;
+  }
+  .turbine{
+    width:410px;
+    height:478px;
+  }
+  .metric.one{left:-22px;top:82px}
+  .metric.two{right:-14px;bottom:70px}
+  .float-note{
+    left:28px;
+    bottom:18px;
+    width:270px;
+  }
+  .hero-flow{
+    margin-top:30px;
+    border-radius:20px;
+  }
+  .hero-flow>div{
+    min-height:94px;
+    padding:20px 22px 18px 52px;
+  }
+  .hero-flow i{left:22px;top:24px}
+  .section{padding:82px 0}
+  .section-head{
+    grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);
+    gap:76px;
+    margin-bottom:34px;
+  }
+  .section h2{
+    max-width:720px;
+    font-size:54px;
+  }
+  .section-intro{
+    max-width:560px;
+    font-size:16px;
+  }
+  .products{
+    grid-template-columns:1.04fr .96fr;
+    gap:18px;
+  }
+  .product-card{
+    min-height:430px;
+    padding:30px;
+    border-radius:28px;
+  }
+  .product-card:first-child{min-height:468px}
+  .product-card h3{
+    max-width:430px;
+    font-size:32px;
+  }
+  .product-card p{
+    max-width:410px;
+    font-size:15px;
+  }
+  .product-art{
+    right:-18px;
+    bottom:-30px;
+    transform:scale(1.08);
+    transform-origin:bottom right;
+  }
+  .tech-grid{
+    grid-template-columns:1.18fr .82fr;
+    gap:18px;
+  }
+  .tech-panel{
+    min-height:480px;
+    padding:38px;
+    border-radius:30px;
+  }
+  .tech-panel h3{
+    max-width:520px;
+    font-size:38px;
+  }
+  .benefits{gap:12px}
+  .benefit{
+    padding:22px;
+    border-radius:22px;
+  }
+  .benefit h4{margin-top:18px}
+  .use-cases{gap:12px}
+  .case{
+    min-height:244px;
+    padding:22px;
+    border-radius:24px;
+  }
+  .case h3{font-size:20px}
+  .cta-section{padding:18px 0 82px}
+  .cta-box{
+    padding:46px 50px;
+    border-radius:30px;
+  }
+  .cta-box h2{font-size:52px}
+  .footer{padding-top:32px}
+}
