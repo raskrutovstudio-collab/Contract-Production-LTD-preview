@@ -671,3 +671,41 @@ body.menu-open{overflow:hidden}
   .cta-box h2{font-size:52px}
   .footer{padding-top:32px}
 }
+
+
+/* Reduce card-grid feeling on desktop */
+@media(min-width:1101px){
+  .benefits{
+    gap:0;
+    border:1px solid #e0eaf4;
+    border-radius:28px;
+    overflow:hidden;
+    background:#fff;
+  }
+  .benefit{
+    min-height:220px;
+    border:0;
+    border-radius:0;
+    box-shadow:none;
+  }
+  .benefit:nth-child(odd){border-right:1px solid #e0eaf4}
+  .benefit:nth-child(-n+2){border-bottom:1px solid #e0eaf4}
+  .use-cases{
+    gap:0;
+    border:1px solid #e0ebf5;
+    border-radius:28px;
+    overflow:hidden;
+    background:#fff;
+  }
+  .case{
+    border:0;
+    border-radius:0;
+    box-shadow:none;
+  }
+  .case+.case{border-left:1px solid #e0ebf5}
+  .case:hover{
+    transform:none;
+    box-shadow:none;
+    background:#f9fcff;
+  }
+}
