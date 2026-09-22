@@ -12,6 +12,7 @@
   <script defer src="/assets/js/main.js"></script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Перейти к содержимому</a>
   <header class="site-header">
     <div class="container">
       <div class="header-row">
@@ -40,7 +41,7 @@
   </header>
 
   <div class="menu-backdrop" hidden></div>
-  <nav class="mobile-nav" id="mobile-navigation" aria-label="Мобильная навигация" aria-hidden="true">
+  <nav class="mobile-nav" id="mobile-navigation" aria-label="Мобильная навигация" aria-hidden="true" inert>
     <a href="#products">Ветроэлектростанции</a>
     <a href="#technology">Технология</a>
     <a href="#solutions">Решения</a>
@@ -50,7 +51,7 @@
     <a href="mailto:info@res.com.kz">info@res.com.kz</a>
   </nav>
 
-  <main>
+  <main id="main-content">
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-content">
