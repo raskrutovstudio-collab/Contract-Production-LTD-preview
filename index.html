@@ -299,25 +299,41 @@
       </div>
     </section>
 
-    <section class="contact-cta" id="contacts" aria-labelledby="contact-title">
-      <div class="container lead-layout">
-        <div class="lead-copy">
+    <section class="request-section" id="contacts" aria-labelledby="contact-title">
+      <div class="request-section__container">
+        <div class="request-section__content">
           <p class="eyebrow light">ОБСУДИМ ВАШ ПРОЕКТ</p>
-          <h2 id="contact-title">Подберём решение под ваш объект и задачи</h2>
-          <p class="contact-lead">Расскажите, где планируется установка и какой результат вы хотите получить. Мы изучим задачу и предложим подходящий формат энергоснабжения.</p>
-          <ul class="lead-points">
+          <h2 id="contact-title">Подберём решение<br>под ваш объект и задачи</h2>
+          <p class="request-section__lead">Расскажите, где планируется установка и какой результат вы хотите получить. Мы изучим задачу и предложим подходящий формат энергоснабжения.</p>
+          <ul class="request-section__points">
             <li>уточним условия объекта</li>
             <li>подберём подходящее решение</li>
             <li>свяжемся для обсуждения деталей</li>
           </ul>
-          <div class="lead-contacts">
-            <p class="lead-company">ТОО «Contract-Production LTD»</p>
-            <a class="contact-row contact-phone" href="tel:+77055220000"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.2 3.8 10 7.4 8.3 9.7c1.2 2.5 3.2 4.5 5.7 5.7l2.3-1.7 3.6 2.8c.6.5.7 1.3.3 2-1 1.6-2.8 2.3-4.6 1.8C9.8 18.8 5.2 14.2 3.7 8.4 3.2 6.6 3.9 4.8 5.5 3.8c.6-.4 1.3-.4 1.7 0Z"></path></svg><span>+7 705 522 00 00</span></a>
-            <a class="contact-row" href="mailto:info@res.com.kz"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m4 7 8 6 8-6"></path></svg><span>info@res.com.kz</span></a>
-            <span class="contact-row"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.3 6-12a6 6 0 1 0-12 0c0 6.7 6 12 6 12Z"></path><circle cx="12" cy="9" r="2"></circle></svg><address>010000, г. Астана, район Нура, ул. Илияс Омаров, д. 27</address></span>
+          <div class="request-section__contacts">
+            <p class="request-section__company">ТОО «Contract-Production LTD»</p>
+            <p class="request-section__bin">БИН 240340001681</p>
+            <a class="request-section__contact-item" href="tel:+77055220000">
+              <span class="request-section__contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="24" height="24"><path d="M7.2 3.8 10 7.4 8.3 9.7c1.2 2.5 3.2 4.5 5.7 5.7l2.3-1.7 3.6 2.8c.6.5.7 1.3.3 2-1 1.6-2.8 2.3-4.6 1.8C9.8 18.8 5.2 14.2 3.7 8.4 3.2 6.6 3.9 4.8 5.5 3.8c.6-.4 1.3-.4 1.7 0Z"></path></svg>
+              </span>
+              <span>+7 705 522 00 00</span>
+            </a>
+            <a class="request-section__contact-item" href="mailto:info@res.com.kz">
+              <span class="request-section__contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="24" height="24"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m4 7 8 6 8-6"></path></svg>
+              </span>
+              <span>info@res.com.kz</span>
+            </a>
+            <div class="request-section__contact-item">
+              <span class="request-section__contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="24" height="24"><path d="M12 21s6-5.3 6-12a6 6 0 1 0-12 0c0 6.7 6 12 6 12Z"></path><circle cx="12" cy="9" r="2"></circle></svg>
+              </span>
+              <address>010000, г. Астана, район Нура, ул. Илияс Омаров, д. 27</address>
+            </div>
           </div>
         </div>
-        <form class="lead-form lead-panel" data-lead-form data-form-name="Главная — заявка перед подвалом" novalidate>
+        <form class="lead-form request-form" data-lead-form data-form-name="Главная — заявка перед подвалом" novalidate>
           <input type="hidden" name="source" value="page">
           <div class="form-honeypot" aria-hidden="true">
             <label>Не заполняйте это поле <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
@@ -330,7 +346,7 @@
             </div>
             <div class="field">
               <label for="project-phone">Телефон</label>
-              <input id="project-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" required aria-describedby="project-phone-error">
+              <input id="project-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" maxlength="18" data-phone-mask required aria-describedby="project-phone-error">
               <p class="field-error" id="project-phone-error" hidden></p>
             </div>
             <div class="field">
@@ -372,42 +388,84 @@
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer-main">
-      <div class="footer-brand">
-        <a class="brand brand-dark" href="#top">
-          <span class="brand-symbol" aria-hidden="true"><i></i><i></i><i></i></span>
-          <span class="brand-copy"><strong>CONTRACT<br>PRODUCTION</strong><small>COMPANY</small></span>
-        </a>
-        <p class="footer-description">Разработка и производство вертикальных ветроэнергетических систем для локальной генерации.</p>
-        <span class="footer-legal">ТОО «Contract-Production LTD»<br>БИН 240340001681</span>
-      </div>
-      <div class="footer-contacts">
-        <h2 class="footer-heading">Контакты</h2>
-        <span class="contact-row footer-contact-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.3 6-12a6 6 0 1 0-12 0c0 6.7 6 12 6 12Z"></path><circle cx="12" cy="9" r="2"></circle></svg><address>010000, г. Астана, район Нура, ул. Илияс Омаров, д. 27</address></span>
-        <a class="contact-row footer-contact-item contact-phone" href="tel:+77055220000"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.2 3.8 10 7.4 8.3 9.7c1.2 2.5 3.2 4.5 5.7 5.7l2.3-1.7 3.6 2.8c.6.5.7 1.3.3 2-1 1.6-2.8 2.3-4.6 1.8C9.8 18.8 5.2 14.2 3.7 8.4 3.2 6.6 3.9 4.8 5.5 3.8c.6-.4 1.3-.4 1.7 0Z"></path></svg><span>+7 705 522 00 00</span></a>
-        <a class="contact-row footer-contact-item" href="mailto:info@res.com.kz"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m4 7 8 6 8-6"></path></svg><span>info@res.com.kz</span></a>
-        <!-- SOCIAL URLS REQUIRED: replace these non-interactive items with links after Instagram, TikTok and Telegram URLs are confirmed. -->
-        <div class="footer-socials" aria-label="Социальные сети">
-          <span class="footer-social" role="img" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.7" r="1"></circle></svg></span>
-          <span class="footer-social" role="img" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4v10.2a4.3 4.3 0 1 1-3.3-4.2"></path><path d="M14 4c.7 2.7 2.3 4.3 5 5"></path></svg></span>
-          <span class="footer-social" role="img" aria-label="Telegram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3.5 11 16-6.5-3 15-5-4-3 2 .5-4 7-6-9 5-3.5-1.5Z"></path></svg></span>
-        </div>
-        <button class="footer-cta" type="button" data-open-lead-modal data-lead-source="footer">Получить консультацию <span aria-hidden="true">↗</span></button>
-      </div>
-      <nav class="footer-nav" aria-label="Разделы сайта">
-        <h2 class="footer-heading">Навигация</h2>
-        <div class="footer-nav-grid">
-          <a class="footer-nav-link" href="./" aria-current="page">Главная</a><a class="footer-nav-link" href="#company">О компании</a>
-          <a class="footer-nav-link" href="#solutions">Продукция</a><a class="footer-nav-link" href="#applications">Решения</a>
-          <a class="footer-nav-link" href="#applications">Проекты</a><a class="footer-nav-link" href="#technology">Технологии</a>
-          <a class="footer-nav-link" href="#advantages">ESG</a><a class="footer-nav-link" href="#contacts">Контакты</a>
-        </div>
-      </nav>
+  <footer class="energy-footer">
+    <div class="energy-footer__edge" aria-hidden="true">
+      <svg viewBox="0 0 1440 70" preserveAspectRatio="none">
+        <path d="M0 54 L1440 10"></path>
+      </svg>
     </div>
-    <div class="container footer-bottom">
-      <span>© 2026 Contract-Production LTD</span>
-      <span>Информация на сайте требует технического подтверждения для конкретного проекта</span>
+    <div class="energy-footer__visual" aria-hidden="true">
+      <svg class="energy-footer__wind" viewBox="0 0 1440 360" preserveAspectRatio="none">
+        <path class="energy-footer__wind-line" d="M-40 92C220 40 380 120 620 74C860 28 1040 18 1480 86"></path>
+        <path class="energy-footer__wind-line" d="M-40 150C260 96 460 188 740 132C980 84 1160 70 1480 140"></path>
+        <path class="energy-footer__wind-line" d="M80 214C340 168 520 250 800 198C1040 154 1220 150 1500 204"></path>
+        <path class="energy-footer__wind-line" d="M420 48C640 20 820 70 1040 36C1200 12 1320 24 1500 8"></path>
+      </svg>
+      <svg class="energy-footer__geometry" viewBox="0 0 180 140">
+        <path d="M12 118 L58 72 L104 118"></path>
+        <path d="M28 128 L84 72"></path>
+        <path d="M0 46 L92 8"></path>
+      </svg>
+      <svg class="energy-footer__rings" viewBox="0 0 500 500">
+        <circle class="ring ring--outer" cx="250" cy="250" r="210"></circle>
+        <circle class="ring ring--middle" cx="250" cy="250" r="172"></circle>
+        <path class="ring ring--accent" d="M250 40a210 210 0 1 1-150 360"></path>
+      </svg>
+      <img class="energy-footer__turbine" src="assets/img/solution-commercial.webp" alt="" width="1024" height="768" loading="lazy" decoding="async">
+    </div>
+    <div class="energy-footer__container">
+      <div class="energy-footer__intro">
+        <div>
+          <p class="energy-footer__eyebrow">Энергия нового поколения</p>
+          <p class="energy-footer__lead">Компактная ветроэнергетика для городов, бизнеса и инфраструктуры</p>
+        </div>
+        <ul class="energy-footer__directions">
+          <li>Городские ВЭС</li>
+          <li>Автономное энергоснабжение</li>
+          <li>Гибридные системы</li>
+        </ul>
+      </div>
+      <div class="energy-footer__main">
+        <div class="energy-footer__brand">
+          <a class="brand" href="#top">
+            <span class="brand-symbol" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="brand-copy"><strong>CONTRACT<br>PRODUCTION</strong><small>COMPANY</small></span>
+          </a>
+          <p class="energy-footer__description">Разработка и производство вертикальных ветроэнергетических систем для локальной генерации.</p>
+          <p class="energy-footer__phrase">Чистая энергия ближе к вашему объекту</p>
+          <p class="energy-footer__legal">ТОО «Contract-Production LTD»<br>БИН 240340001681</p>
+        </div>
+        <div class="energy-footer__contacts">
+          <h2 class="energy-footer__heading">Контакты</h2>
+          <span class="energy-footer__row"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.3 6-12a6 6 0 1 0-12 0c0 6.7 6 12 6 12Z"></path><circle cx="12" cy="9" r="2"></circle></svg><address>010000, г. Астана, район Нура, ул. Илияс Омаров, д. 27</address></span>
+          <a class="energy-footer__row energy-footer__phone" href="tel:+77055220000"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.2 3.8 10 7.4 8.3 9.7c1.2 2.5 3.2 4.5 5.7 5.7l2.3-1.7 3.6 2.8c.6.5.7 1.3.3 2-1 1.6-2.8 2.3-4.6 1.8C9.8 18.8 5.2 14.2 3.7 8.4 3.2 6.6 3.9 4.8 5.5 3.8c.6-.4 1.3-.4 1.7 0Z"></path></svg><span>+7 705 522 00 00</span></a>
+          <a class="energy-footer__row" href="mailto:info@res.com.kz"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m4 7 8 6 8-6"></path></svg><span>info@res.com.kz</span></a>
+          <!-- SOCIAL URLS REQUIRED: replace these non-interactive items with links after Instagram, TikTok and Telegram URLs are confirmed. -->
+          <div class="energy-footer__socials" aria-label="Социальные сети">
+            <span class="energy-footer__social" role="img" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.7" r="1"></circle></svg></span>
+            <span class="energy-footer__social" role="img" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4v10.2a4.3 4.3 0 1 1-3.3-4.2"></path><path d="M14 4c.7 2.7 2.3 4.3 5 5"></path></svg></span>
+            <span class="energy-footer__social" role="img" aria-label="Telegram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3.5 11 16-6.5-3 15-5-4-3 2 .5-4 7-6-9 5-3.5-1.5Z"></path></svg></span>
+          </div>
+          <button class="energy-footer__cta" type="button" data-open-lead-modal data-lead-source="footer">Получить консультацию <span aria-hidden="true">↗</span></button>
+        </div>
+        <nav class="energy-footer__navigation" aria-label="Разделы сайта">
+          <h2 class="energy-footer__heading">Навигация</h2>
+          <div class="energy-footer__nav-grid">
+            <a class="energy-footer__nav-link" href="./" aria-current="page">Главная</a>
+            <a class="energy-footer__nav-link" href="#company">О компании</a>
+            <a class="energy-footer__nav-link" href="#solutions">Продукция</a>
+            <a class="energy-footer__nav-link" href="#applications">Решения</a>
+            <a class="energy-footer__nav-link" href="#applications">Проекты</a>
+            <a class="energy-footer__nav-link" href="#technology">Технологии</a>
+            <a class="energy-footer__nav-link" href="#advantages">ESG</a>
+            <a class="energy-footer__nav-link" href="#contacts">Контакты</a>
+          </div>
+        </nav>
+      </div>
+      <div class="energy-footer__bottom">
+        <span>© 2026 Contract-Production LTD</span>
+        <span>Современные решения городской ветроэнергетики</span>
+      </div>
     </div>
   </footer>
 
@@ -439,7 +497,7 @@
           </div>
           <div class="field">
             <label for="modal-phone">Телефон</label>
-            <input id="modal-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" required aria-describedby="modal-phone-error">
+            <input id="modal-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" maxlength="18" data-phone-mask required aria-describedby="modal-phone-error">
             <p class="field-error" id="modal-phone-error" hidden></p>
           </div>
           <div class="field">

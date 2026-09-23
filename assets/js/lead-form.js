@@ -4,7 +4,7 @@
   const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
   const namePattern = /^[\p{L}\s-]{2,80}$/u;
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-  const phonePattern = /^[+()\d\s-]+$/;
+  const phoneError = 'Укажите номер полностью в формате +7 (___) ___-__-__';
   const modal = document.getElementById('lead-modal');
   const dialog = modal?.querySelector('.lead-modal-dialog');
   let opener = null;
@@ -59,8 +59,134 @@
     return field;
   }
 
-  function digitsCount(value) {
-    return (value.match(/\d/g) || []).length;
+  function phoneDigits(value) {
+    return String(value || '').replace(/\D/g, '');
+  }
+
+  function isCompletePhone(value) {
+    const digits = phoneDigits(value);
+    return digits.length === 11 && digits[0] === '7' && !/[^\d+\s()-]/.test(value);
+  }
+
+  function canonicalPhoneDigits(raw, mode, previousDigits) {
+    let digits = phoneDigits(raw);
+    if (!digits) return '';
+
+    if (digits[0] === '8' && (mode === 'bulk' || digits.length >= 11)) {
+      digits = '7' + digits.slice(1);
+    }
+
+    if (mode === 'bulk') {
+      if (digits[0] === '7' && digits.length >= 11) return digits.slice(0, 11);
+      return ('7' + digits).slice(0, 11);
+    }
+
+    if (!previousDigits) {
+      if (digits[0] === '8') return ('7' + digits.slice(1)).slice(0, 11);
+      if (digits[0] === '7' && digits.length >= 11) return digits.slice(0, 11);
+      return ('7' + digits).slice(0, 11);
+    }
+
+    if (digits[0] !== '7') digits = '7' + digits;
+    return digits.slice(0, 11);
+  }
+
+  function formatPhone(digits) {
+    if (!digits) return '';
+    const national = digits.slice(1);
+    let formatted = '+7';
+    if (!national) return formatted;
+    formatted += ` (${national.slice(0, Math.min(3, national.length))}`;
+    if (national.length >= 3) formatted += ')';
+    if (national.length > 3) formatted += ` ${national.slice(3, Math.min(6, national.length))}`;
+    if (national.length > 6) formatted += `-${national.slice(6, Math.min(8, national.length))}`;
+    if (national.length > 8) formatted += `-${national.slice(8, 10)}`;
+    return formatted;
+  }
+
+  function cursorAfterDigits(formatted, digitCount) {
+    if (digitCount <= 0) return Math.min(2, formatted.length);
+    let seen = 0;
+    for (let index = 0; index < formatted.length; index += 1) {
+      if (/\d/.test(formatted[index])) {
+        seen += 1;
+        if (seen === digitCount) return index + 1;
+      }
+    }
+    return formatted.length;
+  }
+
+  function applyPhoneMask(input, raw, mode) {
+    const previousDigits = input.dataset.phoneDigits || '';
+    const cursor = input.selectionStart ?? raw.length;
+    const digitsBeforeCursor = phoneDigits(raw.slice(0, cursor)).length;
+    const canonical = canonicalPhoneDigits(raw, mode, previousDigits);
+    const formatted = formatPhone(canonical);
+    const addedCountry = canonical.length === phoneDigits(raw).length + 1 && canonical.startsWith('7');
+    let nextDigitCount = mode === 'bulk' ? canonical.length : digitsBeforeCursor;
+    if (mode !== 'bulk' && addedCountry) nextDigitCount += 1;
+
+    input.value = formatted;
+    input.dataset.phoneDigits = canonical;
+    const position = cursorAfterDigits(formatted, nextDigitCount);
+    if (document.activeElement === input) input.setSelectionRange(position, position);
+  }
+
+  function bindPhoneMask(input) {
+    if (input.dataset.phoneMaskBound === 'true') return;
+    input.dataset.phoneMaskBound = 'true';
+
+    input.addEventListener('focus', () => {
+      if (phoneDigits(input.value)) return;
+      input.value = '+7';
+      input.dataset.phoneDigits = '7';
+      try { input.setSelectionRange(2, 2); } catch {}
+    });
+
+    input.addEventListener('paste', (event) => {
+      const text = event.clipboardData?.getData('text') || '';
+      if (!text) return;
+      event.preventDefault();
+      const start = input.selectionStart ?? input.value.length;
+      const end = input.selectionEnd ?? input.value.length;
+      const pastedDigits = phoneDigits(text);
+      const nextValue = pastedDigits.length >= 10
+        ? text
+        : `${input.value.slice(0, start)}${text}${input.value.slice(end)}`;
+      applyPhoneMask(input, nextValue, pastedDigits.length >= 10 ? 'bulk' : 'edit');
+      if (input.getAttribute('aria-invalid') === 'true' && isCompletePhone(input.value)) {
+        clearFieldError(input.form, input);
+      }
+    });
+
+    input.addEventListener('input', (event) => {
+      const bulkTypes = ['insertFromPaste', 'insertReplacementText', 'insertFromDrop', 'insertFromYank'];
+      const mode = bulkTypes.includes(event.inputType) ? 'bulk' : 'edit';
+      const raw = input.value;
+      if (mode === 'bulk' && raw.startsWith('+7') && phoneDigits(raw).length < 11) {
+        applyPhoneMask(input, raw, 'edit');
+      } else {
+        applyPhoneMask(input, raw, mode);
+      }
+      if (input.getAttribute('aria-invalid') === 'true' && isCompletePhone(input.value)) {
+        clearFieldError(input.form, input);
+      }
+    });
+
+    input.addEventListener('blur', () => {
+      window.setTimeout(() => {
+        if (document.activeElement === input) return;
+        const digits = input.dataset.phoneDigits || phoneDigits(input.value);
+        if (digits.length <= 1) {
+          input.value = '';
+          input.dataset.phoneDigits = '';
+          return;
+        }
+        if (!isCompletePhone(input.value) && input.form) {
+          showError(input.form, 'phone', phoneError);
+        }
+      }, 0);
+    });
   }
 
   function validate(form) {
@@ -75,7 +201,7 @@
     };
 
     if (!namePattern.test(name)) mark('name', 'Укажите ваше имя');
-    if (!phonePattern.test(phone) || digitsCount(phone) < 10) mark('phone', 'Укажите корректный номер телефона');
+    if (!isCompletePhone(phone)) mark('phone', phoneError);
     if (email && !emailPattern.test(email)) mark('email', 'Проверьте адрес электронной почты');
     if (!form.querySelector('[name="consent"]')?.checked) mark('consent', 'Подтвердите согласие на обработку данных');
 
@@ -126,9 +252,12 @@
   function buildPayload(form) {
     const data = new FormData(form);
     const message = String(data.get('message') || '').trim().slice(0, 1500);
+    const phoneDisplay = String(data.get('phone') || '').trim();
+    const normalizedPhone = phoneDigits(phoneDisplay);
     const payload = {
       name: String(data.get('name') || '').trim().replace(/\s+/g, ' '),
-      phone: String(data.get('phone') || '').trim(),
+      phone: normalizedPhone ? `+${normalizedPhone}` : '',
+      phone_display: phoneDisplay,
       email: String(data.get('email') || '').trim(),
       message,
       solution: String(data.get('solution') || '').trim(),
@@ -236,6 +365,7 @@
 
   captureUtm();
   document.querySelectorAll('[data-lead-form]').forEach(bindForm);
+  document.querySelectorAll('[data-phone-mask]').forEach(bindPhoneMask);
 
   document.querySelectorAll('[data-open-lead-modal]').forEach((trigger) => {
     trigger.addEventListener('click', () => openModal(trigger));
