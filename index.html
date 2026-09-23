@@ -16,7 +16,7 @@
   <meta property="og:url" content="https://res.com.kz/">
   <meta property="og:image" content="https://res.com.kz/assets/img/hero-wind-city.webp">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="preload" as="image" href="assets/img/hero-wind-city.webp" imagesrcset="assets/img/hero-wind-city-640.webp 640w, /assets/img/hero-wind-city.webp 1280w" imagesizes="100vw" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/img/hero-wind-city.webp" imagesrcset="assets/img/hero-wind-city-640.webp 640w, assets/img/hero-wind-city.webp 1280w" imagesizes="100vw" fetchpriority="high">
   <link rel="stylesheet" href="assets/css/main.css">
   <script type="application/ld+json">
     {
@@ -26,10 +26,20 @@
       "legalName": "ТОО «Contract-Production LTD»",
       "url": "https://res.com.kz/",
       "email": "info@res.com.kz",
-      "identifier": "240340001681"
+      "telephone": "+77055220000",
+      "identifier": "240340001681",
+      "address": {
+        "@type": "PostalAddress",
+        "postalCode": "010000",
+        "addressLocality": "Астана",
+        "addressRegion": "район Нура",
+        "streetAddress": "ул. Илияс Омаров, д. 27",
+        "addressCountry": "KZ"
+      }
     }
   </script>
   <script defer src="assets/js/main.js"></script>
+  <script defer src="assets/js/lead-form.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Перейти к содержимому</a>
@@ -57,7 +67,7 @@
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"></circle><path d="m16 16 4 4"></path></svg>
         </a>
         <span class="languages" aria-label="Язык страницы"><b>RU</b><span>EN</span><span>KZ</span></span>
-        <a class="header-cta" href="mailto:info@res.com.kz?subject=Консультация%20по%20ВЭС">Получить консультацию <span aria-hidden="true">↗</span></a>
+        <button class="header-cta" type="button" data-open-lead-modal data-lead-source="header">Получить консультацию <span aria-hidden="true">↗</span></button>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Открыть меню">
           <span></span><span></span>
         </button>
@@ -99,7 +109,7 @@
 
   <main id="main-content">
     <section class="hero" id="top" aria-labelledby="hero-title">
-      <img class="hero-media" src="assets/img/hero-wind-city.webp" srcset="assets/img/hero-wind-city-640.webp 640w, /assets/img/hero-wind-city.webp 1280w" sizes="100vw" width="1280" height="720" alt="Вертикальная ветроэлектростанция на фоне города и гор" loading="eager" decoding="sync" fetchpriority="high">
+      <img class="hero-media" src="assets/img/hero-wind-city.webp" srcset="assets/img/hero-wind-city-640.webp 640w, assets/img/hero-wind-city.webp 1280w" sizes="100vw" width="1280" height="720" alt="Вертикальная ветроэлектростанция на фоне города и гор" loading="eager" decoding="sync" fetchpriority="high">
       <div class="hero-shade" aria-hidden="true"></div>
       <div class="hero-motion" aria-hidden="true">
         <svg class="hero-wind" viewBox="0 0 1440 790" preserveAspectRatio="none">
@@ -125,7 +135,7 @@
           <h1 id="hero-title">Компактные<br>ветро&shy;электрические<br><span>станции</span><br><small>для городов и бизнеса</small></h1>
           <p class="hero-lead">Производим вертикальные ветроэлектростанции для локальной и распределённой генерации — от оборудования до монтажа и постпродажного сервиса.</p>
           <div class="hero-actions">
-            <a class="button button-blue" href="mailto:info@res.com.kz?subject=Обсудить%20проект">Обсудить проект <span aria-hidden="true">↗</span></a>
+            <button class="button button-blue" type="button" data-open-lead-modal data-lead-source="hero">Обсудить проект <span aria-hidden="true">↗</span></button>
             <a class="video-link" href="#technology"><span class="play" aria-hidden="true">▶</span><span>Как работает<br>технология</span></a>
           </div>
         </div>
@@ -262,7 +272,7 @@
         <div>
           <p class="eyebrow light">Почему выбирают нас</p>
           <h2 id="advantages-title">Надёжный партнёр<br>в сфере возобновляемой энергетики</h2>
-          <a class="why-us-cta" href="#contacts">Обсудить проект <span aria-hidden="true">→</span></a>
+          <button class="why-us-cta" type="button" data-open-lead-modal data-lead-source="why-us">Обсудить проект <span aria-hidden="true">→</span></button>
         </div>
         <div class="advantage-list">
           <div><strong>Производство</strong><span>Разработка и выпуск двух моделей ВЭС</span></div>
@@ -290,21 +300,74 @@
     </section>
 
     <section class="contact-cta" id="contacts" aria-labelledby="contact-title">
-      <div class="container contact-grid">
-        <div>
-          <p class="eyebrow light">Начните с консультации</p>
-          <h2 id="contact-title">Готовы обсудить ваш проект?</h2>
-          <p class="contact-lead">Подберём решение под условия размещения и задачи вашего объекта.</p>
-          <div class="contact-actions">
-            <a class="button button-blue" href="mailto:info@res.com.kz?subject=Получить%20консультацию">Получить консультацию <span aria-hidden="true">↗</span></a>
-            <a class="button button-outline" href="mailto:info@res.com.kz">Написать на email</a>
+      <div class="container lead-layout">
+        <div class="lead-copy">
+          <p class="eyebrow light">ОБСУДИМ ВАШ ПРОЕКТ</p>
+          <h2 id="contact-title">Подберём решение под ваш объект и задачи</h2>
+          <p class="contact-lead">Расскажите, где планируется установка и какой результат вы хотите получить. Мы изучим задачу и предложим подходящий формат энергоснабжения.</p>
+          <ul class="lead-points">
+            <li>уточним условия объекта</li>
+            <li>подберём подходящее решение</li>
+            <li>свяжемся для обсуждения деталей</li>
+          </ul>
+          <div class="lead-contacts">
+            <p class="lead-company">ТОО «Contract-Production LTD»</p>
+            <a class="contact-row contact-phone" href="tel:+77055220000"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.2 3.8 10 7.4 8.3 9.7c1.2 2.5 3.2 4.5 5.7 5.7l2.3-1.7 3.6 2.8c.6.5.7 1.3.3 2-1 1.6-2.8 2.3-4.6 1.8C9.8 18.8 5.2 14.2 3.7 8.4 3.2 6.6 3.9 4.8 5.5 3.8c.6-.4 1.3-.4 1.7 0Z"></path></svg><span>+7 705 522 00 00</span></a>
+            <a class="contact-row" href="mailto:info@res.com.kz"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m4 7 8 6 8-6"></path></svg><span>info@res.com.kz</span></a>
+            <span class="contact-row"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.3 6-12a6 6 0 1 0-12 0c0 6.7 6 12 6 12Z"></path><circle cx="12" cy="9" r="2"></circle></svg><address>010000, г. Астана, район Нура, ул. Илияс Омаров, д. 27</address></span>
           </div>
         </div>
-        <ul>
-          <li><span aria-hidden="true">✓</span> Ответим на вопросы по размещению</li>
-          <li><span aria-hidden="true">✓</span> Обсудим конфигурацию системы</li>
-          <li><span aria-hidden="true">✓</span> Подготовим следующий шаг проекта</li>
-        </ul>
+        <form class="lead-form lead-panel" data-lead-form data-form-name="Главная — заявка перед подвалом" novalidate>
+          <input type="hidden" name="source" value="page">
+          <div class="form-honeypot" aria-hidden="true">
+            <label>Не заполняйте это поле <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+          </div>
+          <div class="form-grid">
+            <div class="field">
+              <label for="project-name">Как к вам обращаться?</label>
+              <input id="project-name" name="name" type="text" autocomplete="name" required aria-describedby="project-name-error">
+              <p class="field-error" id="project-name-error" hidden></p>
+            </div>
+            <div class="field">
+              <label for="project-phone">Телефон</label>
+              <input id="project-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" required aria-describedby="project-phone-error">
+              <p class="field-error" id="project-phone-error" hidden></p>
+            </div>
+            <div class="field">
+              <label for="project-email">Email</label>
+              <input id="project-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="name@company.kz" aria-describedby="project-email-error">
+              <p class="field-error" id="project-email-error" hidden></p>
+            </div>
+            <div class="field">
+              <label for="project-company">Компания</label>
+              <input id="project-company" name="company" type="text" autocomplete="organization">
+            </div>
+            <div class="field field-wide">
+              <label for="project-solution">Интересующее решение</label>
+              <select id="project-solution" name="solution">
+                <option value="">Выберите направление</option>
+                <option value="city-wind">Городская ВЭС</option>
+                <option value="commercial">Коммерческое решение</option>
+                <option value="autonomous">Автономное энергоснабжение</option>
+                <option value="hybrid">Гибридная система</option>
+                <option value="other">Другое</option>
+              </select>
+            </div>
+            <div class="field field-wide">
+              <label for="project-message">Расскажите о задаче</label>
+              <textarea id="project-message" name="message" rows="4" maxlength="1500" placeholder="Расскажите коротко об объекте и планируемой установке"></textarea>
+            </div>
+          </div>
+          <div class="field field-consent">
+            <label for="project-consent">
+              <input id="project-consent" name="consent" type="checkbox" value="yes" aria-describedby="project-consent-error">
+              <span>Я согласен на обработку персональных данных</span>
+            </label>
+            <p class="field-error" id="project-consent-error" hidden></p>
+          </div>
+          <button class="button button-blue lead-submit" type="submit">Отправить заявку</button>
+          <div class="form-status" data-form-status role="status" aria-live="polite"></div>
+        </form>
       </div>
     </section>
   </main>
@@ -321,19 +384,16 @@
       </div>
       <div class="footer-contacts">
         <h2 class="footer-heading">Контакты</h2>
-        <address>
-          <span class="contact-row footer-contact-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.3 6-12a6 6 0 1 0-12 0c0 6.7 6 12 6 12Z"></path><circle cx="12" cy="9" r="2"></circle></svg><span>Казахстан</span></span>
-          <!-- TEMPORARY PHONE: replace with the confirmed company number before production publication. -->
-          <a class="contact-row footer-contact-item contact-phone" href="tel:+77000000000"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.2 3.8 10 7.4 8.3 9.7c1.2 2.5 3.2 4.5 5.7 5.7l2.3-1.7 3.6 2.8c.6.5.7 1.3.3 2-1 1.6-2.8 2.3-4.6 1.8C9.8 18.8 5.2 14.2 3.7 8.4 3.2 6.6 3.9 4.8 5.5 3.8c.6-.4 1.3-.4 1.7 0Z"></path></svg><span>+7 (700) 000-00-00</span></a>
-          <a class="contact-row footer-contact-item" href="mailto:info@res.com.kz"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m4 7 8 6 8-6"></path></svg><span>info@res.com.kz</span></a>
-        </address>
+        <span class="contact-row footer-contact-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.3 6-12a6 6 0 1 0-12 0c0 6.7 6 12 6 12Z"></path><circle cx="12" cy="9" r="2"></circle></svg><address>010000, г. Астана, район Нура, ул. Илияс Омаров, д. 27</address></span>
+        <a class="contact-row footer-contact-item contact-phone" href="tel:+77055220000"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.2 3.8 10 7.4 8.3 9.7c1.2 2.5 3.2 4.5 5.7 5.7l2.3-1.7 3.6 2.8c.6.5.7 1.3.3 2-1 1.6-2.8 2.3-4.6 1.8C9.8 18.8 5.2 14.2 3.7 8.4 3.2 6.6 3.9 4.8 5.5 3.8c.6-.4 1.3-.4 1.7 0Z"></path></svg><span>+7 705 522 00 00</span></a>
+        <a class="contact-row footer-contact-item" href="mailto:info@res.com.kz"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m4 7 8 6 8-6"></path></svg><span>info@res.com.kz</span></a>
         <!-- SOCIAL URLS REQUIRED: replace these non-interactive items with links after Instagram, TikTok and Telegram URLs are confirmed. -->
         <div class="footer-socials" aria-label="Социальные сети">
           <span class="footer-social" role="img" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.7" r="1"></circle></svg></span>
           <span class="footer-social" role="img" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4v10.2a4.3 4.3 0 1 1-3.3-4.2"></path><path d="M14 4c.7 2.7 2.3 4.3 5 5"></path></svg></span>
           <span class="footer-social" role="img" aria-label="Telegram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3.5 11 16-6.5-3 15-5-4-3 2 .5-4 7-6-9 5-3.5-1.5Z"></path></svg></span>
         </div>
-        <a class="footer-cta" href="mailto:info@res.com.kz?subject=Консультация%20по%20ВЭС">Получить консультацию <span aria-hidden="true">↗</span></a>
+        <button class="footer-cta" type="button" data-open-lead-modal data-lead-source="footer">Получить консультацию <span aria-hidden="true">↗</span></button>
       </div>
       <nav class="footer-nav" aria-label="Разделы сайта">
         <h2 class="footer-heading">Навигация</h2>
@@ -350,5 +410,70 @@
       <span>Информация на сайте требует технического подтверждения для конкретного проекта</span>
     </div>
   </footer>
+
+  <div class="lead-modal" id="lead-modal" hidden inert>
+    <div class="lead-modal-overlay" data-close-lead-modal></div>
+    <div class="lead-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="lead-modal-title">
+      <button class="lead-modal__close" type="button" aria-label="Закрыть форму" data-close-lead-modal>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6 6L18 18"></path>
+          <path d="M18 6L6 18"></path>
+        </svg>
+      </button>
+      <h2 id="lead-modal-title">Обсудим ваш проект</h2>
+      <p class="lead-modal-lead">Оставьте контакты и кратко опишите задачу. Мы свяжемся с вами, чтобы уточнить детали и подобрать подходящее решение.</p>
+      <p class="lead-modal-contacts">
+        <a href="tel:+77055220000">+7 705 522 00 00</a>
+        <a href="mailto:info@res.com.kz">info@res.com.kz</a>
+      </p>
+      <form class="lead-form" data-lead-form data-form-name="Главная — модальная заявка" novalidate>
+        <input type="hidden" name="source" value="">
+        <div class="form-honeypot" aria-hidden="true">
+          <label>Не заполняйте это поле <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+        </div>
+        <div class="form-grid">
+          <div class="field">
+            <label for="modal-name">Как к вам обращаться?</label>
+            <input id="modal-name" name="name" type="text" autocomplete="name" required aria-describedby="modal-name-error">
+            <p class="field-error" id="modal-name-error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="modal-phone">Телефон</label>
+            <input id="modal-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" required aria-describedby="modal-phone-error">
+            <p class="field-error" id="modal-phone-error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="modal-email">Email</label>
+            <input id="modal-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="name@company.kz" aria-describedby="modal-email-error">
+            <p class="field-error" id="modal-email-error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="modal-solution">Интересующее решение</label>
+            <select id="modal-solution" name="solution">
+              <option value="">Выберите направление</option>
+              <option value="city-wind">Городская ВЭС</option>
+              <option value="commercial">Коммерческое решение</option>
+              <option value="autonomous">Автономное энергоснабжение</option>
+              <option value="hybrid">Гибридная система</option>
+              <option value="other">Другое</option>
+            </select>
+          </div>
+          <div class="field field-wide">
+            <label for="modal-message">Расскажите о задаче</label>
+            <textarea id="modal-message" name="message" rows="4" maxlength="1500" placeholder="Расскажите коротко об объекте и планируемой установке"></textarea>
+          </div>
+        </div>
+        <div class="field field-consent">
+          <label for="modal-consent">
+            <input id="modal-consent" name="consent" type="checkbox" value="yes" aria-describedby="modal-consent-error">
+            <span>Я согласен на обработку персональных данных</span>
+          </label>
+          <p class="field-error" id="modal-consent-error" hidden></p>
+        </div>
+        <button class="button button-blue lead-submit" type="submit">Отправить заявку</button>
+        <div class="form-status" data-form-status role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
 </body>
 </html>
