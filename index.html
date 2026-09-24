@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru">
+<html lang="ru" dir="ltr">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -68,7 +68,12 @@
         <a class="header-search" href="#solutions" aria-label="Перейти к решениям">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"></circle><path d="m16 16 4 4"></path></svg>
         </a>
-        <span class="languages" aria-label="Язык страницы"><b>RU</b><span>EN</span><span>KZ</span></span>
+        <div class="languages" role="group" aria-label="Выбор языка">
+          <button class="language-option is-active" type="button" data-lang="ru" lang="ru" aria-pressed="true" aria-label="Переключить язык на русский">RU</button>
+          <button class="language-option" type="button" data-lang="en" lang="en" aria-pressed="false" aria-label="Переключить язык на английский">EN</button>
+          <button class="language-option" type="button" data-lang="kk" lang="kk" aria-pressed="false" aria-label="Переключить язык на казахский">KZ</button>
+          <button class="language-option" type="button" data-lang="ar" lang="ar" aria-pressed="false" aria-label="Переключить язык на арабский">AR</button>
+        </div>
         <button class="header-cta" type="button" data-open-lead-modal data-lead-source="header">Получить консультацию <span aria-hidden="true">↗</span></button>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Открыть меню">
           <span></span><span></span>
@@ -105,12 +110,16 @@
       <div class="mobile-language" aria-label="Выбор языка">
         <span class="mobile-language-label">Язык</span>
         <div class="mobile-language-options">
-          <button class="mobile-language-option is-active" type="button" data-lang="ru" lang="ru" aria-pressed="true">RU</button>
-          <button class="mobile-language-option" type="button" data-lang="en" lang="en" aria-pressed="false">EN</button>
-          <button class="mobile-language-option" type="button" data-lang="kk" lang="kk" aria-pressed="false">KZ</button>
+          <button class="language-option mobile-language-option is-active" type="button" data-lang="ru" lang="ru" aria-pressed="true" aria-label="Переключить язык на русский">RU</button>
+          <button class="language-option mobile-language-option" type="button" data-lang="en" lang="en" aria-pressed="false" aria-label="Переключить язык на английский">EN</button>
+          <button class="language-option mobile-language-option" type="button" data-lang="kk" lang="kk" aria-pressed="false" aria-label="Переключить язык на казахский">KZ</button>
+          <button class="language-option mobile-language-option" type="button" data-lang="ar" lang="ar" aria-pressed="false" aria-label="Переключить язык на арабский">AR</button>
         </div>
       </div>
-      <a class="mobile-contact" href="mailto:info@res.com.kz">info@res.com.kz</a>
+      <div class="mobile-contacts">
+        <a class="mobile-contact" href="tel:+77055220000">+7 705 522 00 00</a>
+        <a class="mobile-contact" href="mailto:info@res.com.kz">info@res.com.kz</a>
+      </div>
     </div>
   </nav>
 
@@ -139,7 +148,7 @@
       <div class="container hero-layout">
         <div class="hero-content">
           <p class="eyebrow light">Энергия новых возможностей</p>
-          <h1 id="hero-title">Компактные<br>ветро&shy;электрические<br><span>станции</span><br><small>для городов и бизнеса</small></h1>
+          <h1 id="hero-title">Компактные<br><span class="hero-title-long">ветроэлектрические</span><br><span>станции</span><br><small>для городов и бизнеса</small></h1>
           <p class="hero-lead">Производим вертикальные ветроэлектростанции для локальной и распределённой генерации — от оборудования до монтажа и постпродажного сервиса.</p>
           <div class="hero-actions">
             <button class="button button-blue" type="button" data-open-lead-modal data-lead-source="hero">Обсудить проект <span aria-hidden="true">↗</span></button>
@@ -312,7 +321,7 @@
       <div class="request-section__container">
         <div class="request-section__content">
           <p class="eyebrow light">ОБСУДИМ ВАШ ПРОЕКТ</p>
-          <h2 id="contact-title">Подберём решение<br>под ваш объект и задачи</h2>
+          <h2 id="contact-title"><span>Подберём решение</span> <span>под ваш объект</span> <span>и задачи</span></h2>
           <p class="request-section__lead">Расскажите, где планируется установка и какой результат вы хотите получить. Мы изучим задачу и предложим подходящий формат энергоснабжения.</p>
           <ul class="request-section__points">
             <li>уточним условия объекта</li>
@@ -504,7 +513,12 @@
         <a class="header-search" href="#solutions" aria-label="Перейти к решениям">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"></circle><path d="m16 16 4 4"></path></svg>
         </a>
-        <span class="languages" aria-label="Язык страницы"><b>RU</b><span>EN</span><span>KZ</span></span>
+        <div class="languages" role="group" aria-label="Выбор языка">
+          <button class="language-option is-active" type="button" data-lang="ru" lang="ru" aria-pressed="true" aria-label="Переключить язык на русский">RU</button>
+          <button class="language-option" type="button" data-lang="en" lang="en" aria-pressed="false" aria-label="Переключить язык на английский">EN</button>
+          <button class="language-option" type="button" data-lang="kk" lang="kk" aria-pressed="false" aria-label="Переключить язык на казахский">KZ</button>
+          <button class="language-option" type="button" data-lang="ar" lang="ar" aria-pressed="false" aria-label="Переключить язык на арабский">AR</button>
+        </div>
         <button class="header-cta" type="button" data-open-lead-modal data-lead-source="sticky-header">Получить консультацию <span aria-hidden="true">↗</span></button>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Открыть меню">
           <span></span><span></span>

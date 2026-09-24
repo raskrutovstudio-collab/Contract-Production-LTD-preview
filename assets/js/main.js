@@ -1,5 +1,50 @@
 document.documentElement.classList.add('js');
 
+const SITE_LANGUAGES = [
+  { code: 'ru', label: 'RU' },
+  { code: 'en', label: 'EN' },
+  { code: 'kk', label: 'KZ' },
+  { code: 'ar', label: 'AR' }
+];
+const LANGUAGE_STORAGE_KEY = 'site-language';
+
+const getSiteLanguage = (code) => SITE_LANGUAGES.find((item) => item.code === code) || SITE_LANGUAGES[0];
+
+const readStoredLanguage = () => {
+  try {
+    return getSiteLanguage(window.localStorage.getItem(LANGUAGE_STORAGE_KEY));
+  } catch {
+    return SITE_LANGUAGES[0];
+  }
+};
+
+const applySiteLanguage = (code) => {
+  const language = getSiteLanguage(code);
+
+  try {
+    window.localStorage.setItem(LANGUAGE_STORAGE_KEY, language.code);
+  } catch {
+    // Storage can be blocked; UI state still updates.
+  }
+
+  document.documentElement.lang = language.code;
+  document.documentElement.dir = 'ltr';
+
+  document.querySelectorAll('[data-lang]').forEach((button) => {
+    const isActive = button.getAttribute('data-lang') === language.code;
+    button.classList.toggle('is-active', isActive);
+    button.setAttribute('aria-pressed', String(isActive));
+  });
+};
+
+applySiteLanguage(readStoredLanguage().code);
+
+document.querySelectorAll('[data-lang]').forEach((button) => {
+  button.addEventListener('click', () => {
+    applySiteLanguage(button.getAttribute('data-lang'));
+  });
+});
+
 const menuToggles = [...document.querySelectorAll('.menu-toggle')];
 const menuToggle = menuToggles[0];
 const mobileMenu = document.querySelector('.mobile-menu');
@@ -9,6 +54,8 @@ const menuClose = document.querySelector('.mobile-menu-close');
 if (menuToggles.length && mobileMenu && menuBackdrop && menuClose) {
   const focusableSelector = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
   let lastMenuTrigger = menuToggle;
+  let menuScrollY = 0;
+  let restoreMenuScroll = true;
 
   const syncMenuToggles = (isOpen) => {
     menuToggles.forEach((toggle) => {
@@ -17,7 +64,37 @@ if (menuToggles.length && mobileMenu && menuBackdrop && menuClose) {
     });
   };
 
+  const lockPageScroll = () => {
+    menuScrollY = window.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${menuScrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
+  };
+
+  const unlockPageScroll = () => {
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    document.body.style.width = '';
+
+    if (restoreMenuScroll) {
+      window.scrollTo({
+        top: menuScrollY,
+        left: 0,
+        behavior: 'instant'
+      });
+    }
+  };
+
   const setMenuState = isOpen => {
+    if (isOpen) {
+      restoreMenuScroll = true;
+      lockPageScroll();
+    }
+
     mobileMenu.classList.toggle('is-open', isOpen);
     menuBackdrop.classList.toggle('is-visible', isOpen);
     menuBackdrop.hidden = !isOpen;
@@ -27,10 +104,11 @@ if (menuToggles.length && mobileMenu && menuBackdrop && menuClose) {
     document.body.classList.toggle('menu-open', isOpen);
 
     if (isOpen) {
-      menuClose.focus();
+      menuClose.focus({ preventScroll: true });
     } else {
+      unlockPageScroll();
       const visibleToggle = menuToggles.find((toggle) => toggle.offsetParent && !toggle.closest('[inert]'));
-      (visibleToggle || lastMenuTrigger || menuToggle).focus();
+      (visibleToggle || lastMenuTrigger || menuToggle).focus({ preventScroll: true });
     }
   };
 
@@ -45,19 +123,9 @@ if (menuToggles.length && mobileMenu && menuBackdrop && menuClose) {
   menuBackdrop.addEventListener('click', () => setMenuState(false));
   mobileMenu.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
+      const href = link.getAttribute('href') || '';
+      restoreMenuScroll = !(href.startsWith('#') && href.length > 1);
       setMenuState(false);
-    });
-  });
-
-  const languageOptions = [...mobileMenu.querySelectorAll('.mobile-language-option')];
-
-  languageOptions.forEach(option => {
-    option.addEventListener('click', () => {
-      languageOptions.forEach(item => {
-        const isActive = item === option;
-        item.classList.toggle('is-active', isActive);
-        item.setAttribute('aria-pressed', String(isActive));
-      });
     });
   });
 
