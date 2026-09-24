@@ -480,25 +480,38 @@
     </div>
   </footer>
 
-  <nav class="quick-nav" data-quick-nav aria-label="Быстрый доступ по разделам" aria-hidden="true" inert>
-    <a class="quick-nav__brand" href="#top">
-      <img src="assets/img/contract-production-logo.png" alt="Contract-Production LTD" width="1024" height="1024">
-    </a>
-    <div class="quick-nav__panel" id="quick-nav-panel">
-      <div class="quick-nav__links">
+  <header class="site-header site-header--sticky" data-sticky-header aria-hidden="true" inert>
+    <div class="container header-inner">
+      <a class="brand" href="#top">
+        <span class="brand-logo site-header__logo">
+          <img src="assets/img/contract-production-logo.png" alt="" width="1024" height="1024">
+        </span>
+        <span class="brand-copy"><strong>CONTRACT<br>PRODUCTION</strong><small>COMPANY</small></span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Навигация по разделам">
+        <a href="#top">Главная</a>
         <a href="#company">О компании</a>
         <a href="#solutions">Продукция</a>
         <a href="#applications">Решения</a>
+        <a href="#applications">Проекты</a>
         <a href="#technology">Технологии</a>
         <a href="#advantages">ESG</a>
         <a href="#contacts">Контакты</a>
+      </nav>
+
+      <div class="header-tools">
+        <a class="header-search" href="#solutions" aria-label="Перейти к решениям">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"></circle><path d="m16 16 4 4"></path></svg>
+        </a>
+        <span class="languages" aria-label="Язык страницы"><b>RU</b><span>EN</span><span>KZ</span></span>
+        <button class="header-cta" type="button" data-open-lead-modal data-lead-source="sticky-header">Получить консультацию <span aria-hidden="true">↗</span></button>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Открыть меню">
+          <span></span><span></span>
+        </button>
       </div>
-      <button class="quick-nav__cta" type="button" data-open-lead-modal data-lead-source="quick-nav">Обсудить проект</button>
     </div>
-    <button class="quick-nav__toggle" type="button" aria-expanded="false" aria-controls="quick-nav-panel" aria-label="Открыть меню разделов">
-      <span></span><span></span>
-    </button>
-  </nav>
+  </header>
 
   <button class="back-to-top" type="button" data-back-to-top aria-label="Наверх" inert>
     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
