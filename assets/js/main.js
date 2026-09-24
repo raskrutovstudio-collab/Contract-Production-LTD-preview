@@ -160,3 +160,116 @@ if (hero && heroMotion && finePointer.matches && !reducedMotion.matches) {
     queueHeroMotion();
   });
 }
+
+const quickNav = document.querySelector('[data-quick-nav]');
+const backToTop = document.querySelector('[data-back-to-top]');
+const siteHeader = document.querySelector('.site-header');
+
+if (quickNav && backToTop && siteHeader) {
+  const quickToggle = quickNav.querySelector('.quick-nav__toggle');
+  const quickPanel = quickNav.querySelector('.quick-nav__panel');
+  const quickLinks = [...quickNav.querySelectorAll('.quick-nav__links a')];
+  const sectionIds = ['company', 'solutions', 'applications', 'technology', 'advantages', 'contacts'];
+  const sections = sectionIds
+    .map((id) => document.getElementById(id))
+    .filter(Boolean)
+    .sort((first, second) => first.offsetTop - second.offsetTop);
+  const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  const syncPanelInert = () => {
+    const compact = window.innerWidth <= 900;
+    const open = quickNav.classList.contains('is-open');
+    if (quickPanel) quickPanel.toggleAttribute('inert', compact && !open);
+  };
+
+  const setQuickOpen = (isOpen) => {
+    quickNav.classList.toggle('is-open', isOpen);
+    if (quickToggle) {
+      quickToggle.setAttribute('aria-expanded', String(isOpen));
+      quickToggle.setAttribute('aria-label', isOpen ? 'Закрыть меню разделов' : 'Открыть меню разделов');
+    }
+    syncPanelInert();
+  };
+
+  const setChromeVisible = (isVisible) => {
+    quickNav.classList.toggle('is-visible', isVisible);
+    quickNav.toggleAttribute('inert', !isVisible);
+    quickNav.setAttribute('aria-hidden', String(!isVisible));
+    backToTop.classList.toggle('is-visible', isVisible);
+    backToTop.toggleAttribute('inert', !isVisible);
+    backToTop.setAttribute('aria-hidden', String(!isVisible));
+    if (!isVisible) setQuickOpen(false);
+    else syncPanelInert();
+  };
+
+  const setActiveSection = (id) => {
+    quickLinks.forEach((link) => {
+      const isActive = link.getAttribute('href') === `#${id}`;
+      link.classList.toggle('is-active', isActive);
+      if (isActive) link.setAttribute('aria-current', 'true');
+      else link.removeAttribute('aria-current');
+    });
+  };
+
+  if ('IntersectionObserver' in window) {
+    const chromeObserver = new IntersectionObserver((entries) => {
+      setChromeVisible(!entries[0].isIntersecting);
+    }, { threshold: 0 });
+
+    chromeObserver.observe(siteHeader);
+
+    const updateActive = () => {
+      const marker = 120;
+      let currentId = sections[0]?.id || '';
+      sections.forEach((section) => {
+        if (section.getBoundingClientRect().top <= marker) currentId = section.id;
+      });
+      if (currentId) setActiveSection(currentId);
+    };
+
+    const spyObserver = new IntersectionObserver(updateActive, {
+      rootMargin: '-80px 0px -40% 0px',
+      threshold: [0, 0.2, 0.45, 0.7]
+    });
+
+    sections.forEach((section) => spyObserver.observe(section));
+    updateActive();
+  } else {
+    setChromeVisible(window.scrollY > 80);
+  }
+
+  if (quickToggle) {
+    quickToggle.addEventListener('click', () => {
+      setQuickOpen(!quickNav.classList.contains('is-open'));
+    });
+  }
+
+  quickLinks.forEach((link) => {
+    link.addEventListener('click', () => setQuickOpen(false));
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!quickNav.contains(event.target)) setQuickOpen(false);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && quickNav.classList.contains('is-open')) {
+      setQuickOpen(false);
+      quickToggle?.focus();
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 900) setQuickOpen(false);
+    else syncPanelInert();
+  });
+
+  syncPanelInert();
+
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: motionQuery.matches ? 'auto' : 'smooth'
+    });
+  });
+}

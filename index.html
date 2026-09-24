@@ -480,6 +480,32 @@
     </div>
   </footer>
 
+  <nav class="quick-nav" data-quick-nav aria-label="Быстрый доступ по разделам" aria-hidden="true" inert>
+    <a class="quick-nav__brand" href="#top">
+      <img src="assets/img/contract-production-logo.png" alt="Contract-Production LTD" width="1024" height="1024">
+    </a>
+    <div class="quick-nav__panel" id="quick-nav-panel">
+      <div class="quick-nav__links">
+        <a href="#company">О компании</a>
+        <a href="#solutions">Продукция</a>
+        <a href="#applications">Решения</a>
+        <a href="#technology">Технологии</a>
+        <a href="#advantages">ESG</a>
+        <a href="#contacts">Контакты</a>
+      </div>
+      <button class="quick-nav__cta" type="button" data-open-lead-modal data-lead-source="quick-nav">Обсудить проект</button>
+    </div>
+    <button class="quick-nav__toggle" type="button" aria-expanded="false" aria-controls="quick-nav-panel" aria-label="Открыть меню разделов">
+      <span></span><span></span>
+    </button>
+  </nav>
+
+  <button class="back-to-top" type="button" data-back-to-top aria-label="Наверх" inert>
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M6 14 12 8l6 6"></path>
+    </svg>
+  </button>
+
   <div class="lead-modal" id="lead-modal" hidden inert>
     <div class="lead-modal-overlay" data-close-lead-modal></div>
     <div class="lead-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="lead-modal-title">
