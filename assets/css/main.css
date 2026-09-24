@@ -3193,11 +3193,11 @@ button:focus-visible {
   align-items: center;
   gap: 10px;
   padding: 6px 8px 6px 12px;
-  border: 1px solid rgba(152, 191, 218, .42);
-  border-radius: 20px;
-  background: rgba(255, 255, 255, .94);
-  box-shadow: 0 12px 36px rgba(8, 37, 65, .12);
-  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, .2);
+  border-radius: 16px;
+  color: var(--white);
+  background: rgba(3, 24, 43, .94);
+  box-shadow: 0 10px 28px rgba(3, 24, 43, .28);
   opacity: 0;
   pointer-events: none;
   transform: translate(-50%, -15px);
@@ -3246,26 +3246,35 @@ button:focus-visible {
 }
 
 .quick-nav__links a {
+  position: relative;
   padding: 8px 10px;
-  border-radius: 12px;
-  color: var(--brand-navy);
+  color: var(--white);
   font-family: var(--font-body);
   font-size: 13px;
   font-weight: 600;
   line-height: 1.2;
   white-space: nowrap;
-  transition: color 180ms ease, background-color 180ms ease;
 }
 
-.quick-nav__links a:hover,
-.quick-nav__links a:focus-visible {
-  color: var(--blue-600);
-  background: rgba(17, 158, 243, .1);
+.quick-nav__links a::after {
+  position: absolute;
+  right: 100%;
+  bottom: 6px;
+  left: 10px;
+  height: 1px;
+  background: var(--blue-500);
+  content: "";
+  transition: right .22s ease;
+}
+
+.quick-nav__links a:hover::after,
+.quick-nav__links a:focus-visible::after,
+.quick-nav__links a.is-active::after {
+  right: 10px;
 }
 
 .quick-nav__links a.is-active {
-  color: var(--blue-600);
-  background: rgba(17, 158, 243, .14);
+  color: var(--blue-100);
 }
 
 .quick-nav__cta {
@@ -3275,21 +3284,22 @@ button:focus-visible {
   align-items: center;
   justify-content: center;
   padding: 0 16px;
-  border: 0;
-  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, .42);
+  border-radius: 24px;
   cursor: pointer;
   color: var(--white);
-  background: var(--blue-600);
+  background: transparent;
   font-family: var(--font-body);
   font-size: 13px;
   font-weight: 700;
   white-space: nowrap;
-  transition: background-color 180ms ease, transform 180ms ease;
+  transition: color .2s ease, background-color .2s ease;
 }
 
 .quick-nav__cta:hover,
 .quick-nav__cta:focus-visible {
-  background: var(--blue-500);
+  color: var(--navy-950);
+  background: var(--white);
 }
 
 .quick-nav__toggle {
@@ -3301,10 +3311,10 @@ button:focus-visible {
   align-items: center;
   justify-content: center;
   padding: 0;
-  border: 1px solid rgba(152, 191, 218, .5);
-  border-radius: 12px;
-  background: var(--white);
-  color: var(--brand-navy);
+  border: 1px solid rgba(255, 255, 255, .36);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--white);
   cursor: pointer;
 }
 
@@ -3335,19 +3345,20 @@ button:focus-visible {
   width: 48px;
   height: 48px;
   place-items: center;
-  border: 0;
+  border: 1px solid rgba(255, 255, 255, .42);
   border-radius: 50%;
   cursor: pointer;
   color: var(--white);
-  background: var(--blue-600);
-  box-shadow: 0 10px 24px rgba(7, 139, 232, .28);
+  background: rgba(3, 24, 43, .94);
+  box-shadow: 0 10px 24px rgba(3, 24, 43, .28);
   opacity: 0;
   pointer-events: none;
   transform: translateY(10px) scale(.95);
   transition:
     opacity 240ms ease,
     transform 240ms ease,
-    background-color 180ms ease;
+    color .2s ease,
+    background-color .2s ease;
 }
 
 .back-to-top.is-visible {
@@ -3368,7 +3379,8 @@ button:focus-visible {
 
 .back-to-top:hover,
 .back-to-top:focus-visible {
-  background: var(--blue-500);
+  color: var(--navy-950);
+  background: var(--white);
   transform: translateY(0) scale(1.06);
 }
 
@@ -3394,10 +3406,11 @@ button:focus-visible {
     display: grid;
     gap: 10px;
     padding: 12px;
-    border: 1px solid rgba(152, 191, 218, .42);
-    border-radius: 18px;
-    background: rgba(255, 255, 255, .98);
-    box-shadow: 0 16px 36px rgba(8, 37, 65, .14);
+    border: 1px solid rgba(255, 255, 255, .2);
+    border-radius: 16px;
+    color: var(--white);
+    background: rgba(3, 24, 43, .96);
+    box-shadow: 0 16px 36px rgba(3, 24, 43, .28);
     opacity: 0;
     pointer-events: none;
     transform: translateY(-8px);
